@@ -114,6 +114,7 @@ const homeWork = ['wood-acrylic-vw-plaque-01', 'award-plaque-01', 'screenprint-t
   <section aria-labelledby="work-h" style="padding-top:0">
     <div class="wrap">
       <h2 id="work-h">Recent client work</h2>
+      <a class="card bg-y case-link" href="/portfolio/iring-iright" style="display:flex;gap:16px;align-items:center;text-decoration:none;margin-bottom:24px"><picture><source srcset="/images/portfolio/iring-owner-mario-thumb.webp" type="image/webp" /><img src="/images/portfolio/iring-owner-mario-thumb.jpg" alt="Mario Kanasashi, owner, checking a run of iRing iRite! tees" width="120" height="120" loading="lazy" style="width:120px;height:120px;object-fit:cover;border-radius:12px" /></picture><span><span class="eyebrow">Case study</span><h3 style="margin:4px 0">iRing iRight — branded tees &amp; totes</h3><span>From screen to finished product →</span></span></a>
       <ul class="grid g4 pgrid">
         {homeWork.map((f) => { const ph = photoByFile(f); return <li><a href="/portfolio"><picture><source srcset={`/images/portfolio/${f}-thumb.webp`} type="image/webp" /><img src={`/images/portfolio/${f}-thumb.jpg`} alt={ph.alt} width="480" height="480" loading="lazy" /></picture></a></li>; })}
       </ul>

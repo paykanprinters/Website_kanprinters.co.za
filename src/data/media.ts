@@ -49,6 +49,9 @@ export const photos: Photo[] = [
   { file: 'key-tag-numberplate-01', alt: 'Number-plate style key tags reading CAA 431-759', cats: ['corporate', 'gifts'] },
   { file: 'charlene-screenprinting-01', alt: 'Charlene pulling a squeegee across a screen to print a teal design onto a tote bag in our Lansdowne factory', cats: ['printing', 'corporate'] },
   { file: 'screenprint-tote-01', alt: 'Close-up of a tote bag freshly screenprinted in teal by Charlene in our factory', cats: ['printing', 'corporate'] },
+  { file: 'iring-owner-mario', alt: 'Mario Kanasashi, owner, checking a run of iRing iRite! tees', cats: ['printing', 'corporate'] },
+  { file: 'iring-charlene-client', alt: 'Charlene with our client and the finished totes', cats: ['printing', 'corporate'] },
+  { file: 'iring-client-tees-totes', alt: 'Happy client with her tees and totes', cats: ['printing', 'corporate'] },
   { file: 'screenprint-tshirt-01', alt: 'Close-up of a white screenprinted logo on a dark grey T-shirt', cats: ['printing', 'corporate'] },
   { file: 'screenprint-tshirt-02', alt: 'Dark T-shirt screenprinted with the Kan Screenprinters logo', cats: ['printing', 'corporate'] },
 ];
@@ -61,7 +64,7 @@ export const pageMedia: Record<string, { stills: string[]; photos: string[] }> =
   'memorial-plaques': { stills: ['memorial', 'edgeLit'], photos: ['love-plaque-stand-01'] },
   crystals: { stills: ['crystalCube', 'crystalPortrait'], photos: ['crystal-3d-car-01', 'crystal-3d-02'] },
   engraving: { stills: ['laser', 'carDisplay'], photos: ['award-plaque-01', 'family-sign-laser-01', 'laser-clock-01', 'clock-livelaugh-01', 'desk-organiser-01', 'memorial-plaque-stand-01'] },
-  screenprinting: { stills: [], photos: ['charlene-screenprinting-01', 'screenprint-tote-01', 'screenprint-tshirt-02', 'screenprint-tshirt-01'] },
+  screenprinting: { stills: [], photos: ['charlene-screenprinting-01', 'screenprint-tote-01', 'iring-owner-mario', 'iring-client-tees-totes', 'screenprint-tshirt-02', 'screenprint-tshirt-01'] },
   'digital-printing': { stills: [], photos: ['mug-print-01', 'hard-hat-print-01', 'planter-vinyl-print-01', 'shot-glasses-engraved-01', 'glass-vinyl-01', 'wine-glass-engraved-01'] },
   // TODO: no real photos yet for DTF, UV or pad printing — placeholders shown.
   'dtf-printing': { stills: [], photos: [] },

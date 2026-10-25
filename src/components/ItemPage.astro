@@ -40,7 +40,7 @@ if (item.faqs) schema.push({ '@context': 'https://schema.org', '@type': 'FAQPage
       <div>
         <h2>{isGift ? 'Perfect for' : 'What we print'}</h2>
         <ul class="ticks">{item.uses.map((u) => <li>{u}</li>)}</ul>
-        {item.slug === 'screenprinting' && <><h2 style="margin-top:32px">See it in action</h2><FactoryClip id="svc-factory-clip" /></>}
+        {item.slug === 'screenprinting' && <><h2 style="margin-top:32px">See it in action</h2><FactoryClip id="svc-factory-clip" /><p><a href="/portfolio/iring-iright">Case study: iRing iRight branded tees &amp; totes →</a></p></>}
         <h2 style="margin-top:32px">Recent work</h2>
         {hasMedia ? <div class="grid g3">
           {media.stills.map((k) => <Shot src={stills[k].src} alt={stills[k].alt} title={stills[k].title} sub={stills[k].sub} />)}

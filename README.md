@@ -57,4 +57,5 @@ See `TODO` comments in `src/config/site.ts`:
 - Hero video: export the **royalty-free** 9:16 cut to `public/media/hero.mp4` + `hero-poster.jpg`, set `heroVideo: true`. Never use the copyrighted-song cut.
 - Replace placeholder photos (best sellers, service pages, portfolio) with real WebP photos + alt text.
 - **Confirm Charlene consents to appearing on the website** (factory screenprinting clip `public/media/factory-screenprint.*` and portfolio stills `charlene-screenprinting-01`, `screenprint-tote-01`). Remove them if not.
+- **Confirm client and staff consent for photos** (iRing iRight case study `src/pages/portfolio/iring-iright.astro`: the client, Charlene and Mario in `public/images/portfolio/iring-*`). Don't name the client or organisation unless they approve.
 - About page: owner story, team photo, reviews, client logos.
