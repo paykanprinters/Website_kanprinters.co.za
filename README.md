@@ -1,4 +1,4 @@
-# Kan Printers & Promo — website (www.kanprinters.co.za)
+# Kan Screenprinters — website (www.kanprinters.co.za)
 
 Static site built with [Astro](https://astro.build). Output is plain HTML/CSS/JS + one PHP mailer, so it runs on any cPanel host.
 
@@ -51,10 +51,8 @@ Add repo secrets: `FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD` (create a dedicat
 
 ## Before launch — TODO checklist
 See `TODO` comments in `src/config/site.ts`:
-- Confirm trading name (Kan Screenprinters vs Kan Printers & Promo) — use one everywhere.
-- WhatsApp Business number (currently placeholder `27000000000`).
-- Address (Unit 14 Regency Park, 6 Induland Crescent, Lansdowne), postal code, opening hours, delivery area.
-- Public email + form recipient (`config.php`).
+- Confirm trading days (hours 08:00–17:00 confirmed; Mon–Fri assumed) and delivery area.
+- On the server, copy `api/config.example.php` to `api/config.php` (forms go to `quote@kanprinters.co.za`).
 - Google Business Profile URL.
 - Hero video: export the **royalty-free** 9:16 cut to `public/media/hero.mp4` + `hero-poster.jpg`, set `heroVideo: true`. Never use the copyrighted-song cut.
 - Replace placeholder photos (best sellers, service pages, portfolio) with real WebP photos + alt text.

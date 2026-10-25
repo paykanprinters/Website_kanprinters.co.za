@@ -8,7 +8,7 @@ const a = site.address;
     <div>
       <h2>{site.name}</h2>
       <p>{site.tagline}<br />Proudly printing in Cape Town since {site.foundingYear}.</p>
-      <address style="font-style:normal">{a.street}<br />{a.locality}, {a.city}<!-- TODO confirm address --></address>
+      <address style="font-style:normal">{a.street}<br />{a.locality}, {a.city}</address>
       <p><a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a><br /><a href={`mailto:${site.email}`}>{site.email}</a><br /><a href={waLink()}>WhatsApp us</a></p>
     </div>
     <div><h2>Print services</h2><ul>{services.map((s) => <li><a href={`/services/${s.slug}`}>{s.title}</a></li>)}</ul></div>

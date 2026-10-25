@@ -1,6 +1,6 @@
 <?php
 /**
- * Kan Printers form mailer. Receives POSTs from contact / quote / gift forms.
+ * Kan Screenprinters form mailer. Receives POSTs from contact / quote / gift forms.
  * Config lives in config.php (same folder, NOT in git) — copy config.example.php.
  */
 declare(strict_types=1);
@@ -105,7 +105,7 @@ if ($type !== 'contact' && !empty($_FILES['files']) && is_array($_FILES['files']
 $subject = '[Website] ' . $types[$type] . ' from ' . $name;
 $subject = '=?UTF-8?B?' . base64_encode($subject) . '?=';
 $boundary = 'kp_' . bin2hex(random_bytes(12));
-$headers  = "From: Kan Printers Website <$from>\r\n";
+$headers  = "From: Kan Screenprinters Website <$from>\r\n";
 if ($email !== '') $headers .= "Reply-To: $email\r\n";
 $headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Content-Type: multipart/mixed; boundary=\"$boundary\"\r\n";

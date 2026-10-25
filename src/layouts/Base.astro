@@ -16,7 +16,7 @@ const localBusiness = {
   '@type': 'LocalBusiness',
   '@id': `${site.url}/#business`,
   name: site.name,
-  alternateName: site.legalName,
+  alternateName: site.alternateName,
   url: site.url,
   logo: `${site.url}/images/logo.png`,
   image: ogImage,
@@ -24,13 +24,11 @@ const localBusiness = {
   email: site.email,
   foundingDate: String(site.foundingYear),
   slogan: site.tagline,
-  // TODO confirm address (see src/config/site.ts)
   address: {
     '@type': 'PostalAddress',
     streetAddress: site.address.street,
     addressLocality: `${site.address.locality}, ${site.address.city}`,
     addressRegion: site.address.region,
-    postalCode: site.address.postalCode,
     addressCountry: site.address.country,
   },
   areaServed: 'Cape Town',
