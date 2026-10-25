@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../config/site';
+const years = new Date().getFullYear() - site.foundingYear;
+---
+<Base title="About Us — Cape Town Printers Since 2000" description={`${site.name} has been printing, engraving and personalising in Cape Town since ${site.foundingYear}. Local, family-friendly service with a free proof on every job.`}>
+  <section class="page-hero"><div class="wrap">
+    <p class="eyebrow">Since {site.foundingYear}</p>
+    <h1>Over {years} years of <span class="script">Kan do it</span></h1>
+    <p class="lead">From school uniforms and corporate branding to one-of-a-kind birthday keys and bobbleheads, we’ve been helping Cape Town look good and celebrate since {site.foundingYear}.</p>
+  </div></section>
+  <section><div class="wrap two-col">
+    <div>
+      <h2>What we do</h2>
+      <p>We’re a local Cape Town print and promo shop. Under one roof we offer screenprinting, laser engraving and cutting, DTF, UV, digital and pad printing — so whether you need 500 branded pens or a single memorial plaque, we can make it.</p>
+      <!-- TODO: owner story, team photo, client logos and Google reviews -->
+      <h2>Why customers choose us</h2>
+      <ul class="ticks"><li>Six print methods in-house</li><li>Free digital proof before production</li><li>Bulk and one-off orders welcome</li><li>Friendly local service — call, WhatsApp or pop in</li></ul>
+    </div>
+    <aside class="panel"><h2 style="font-size:1.3rem">{site.tagline}</h2><p><a class="btn" href="/contact">Get in touch</a></p></aside>
+  </div></section>
+</Base>

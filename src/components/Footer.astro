@@ -1,0 +1,28 @@
+---
+import { site, waLink } from '../config/site';
+import { services, gifts } from '../data/catalog';
+const a = site.address;
+---
+<footer class="site-footer">
+  <div class="wrap grid g4">
+    <div>
+      <h2>{site.name}</h2>
+      <p>{site.tagline}<br />Proudly printing in Cape Town since {site.foundingYear}.</p>
+      <address style="font-style:normal">{a.street}<br />{a.locality}, {a.city}<!-- TODO confirm address --></address>
+      <p><a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a><br /><a href={`mailto:${site.email}`}>{site.email}</a><br /><a href={waLink()}>WhatsApp us</a></p>
+    </div>
+    <div><h2>Print services</h2><ul>{services.map((s) => <li><a href={`/services/${s.slug}`}>{s.title}</a></li>)}</ul></div>
+    <div><h2>Personalised gifts</h2><ul>{gifts.map((g) => <li><a href={`/gifts/${g.slug}`}>{g.title}</a></li>)}</ul></div>
+    <div>
+      <h2>Follow the making-of</h2>
+      <ul class="socials">
+        <li><a href={site.socials.instagram} rel="noopener" target="_blank">Instagram</a></li>
+        <li><a href={site.socials.tiktok} rel="noopener" target="_blank">TikTok</a></li>
+        <li><a href={site.socials.facebook} rel="noopener" target="_blank">Facebook</a></li>
+      </ul>
+      <h2 style="margin-top:16px">Quick links</h2>
+      <ul><li><a href="/request-a-quote">Request a quote</a></li><li><a href="/order-a-gift">Order a gift</a></li><li><a href="/portfolio">Portfolio</a></li></ul>
+    </div>
+  </div>
+  <div class="wrap"><p>© {new Date().getFullYear()} {site.name}. All rights reserved.</p></div>
+</footer>

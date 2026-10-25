@@ -1,0 +1,9 @@
+# cPanel Git Version Control deployment: copies the built site (dist/) into public_html.
+# dist/ is gitignored on main, so deploy from a `production` branch that contains dist/
+# (see README → "Deploy option A"), or build on the server if Node is available.
+# TODO: replace USERNAME with the cPanel account username.
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/USERNAME/public_html/
+    - /bin/cp -R dist/. $DEPLOYPATH

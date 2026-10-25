@@ -1,0 +1,28 @@
+---
+import { site } from '../config/site';
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const links = [
+  ['/services', 'Print Services'], ['/gifts', 'Personalised Gifts'], ['/portfolio', 'Portfolio'],
+  ['/about', 'About'], ['/contact', 'Contact'], ['/request-a-quote', 'Get a Quote'],
+];
+---
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/"><img src="/images/logo.png" alt={`${site.name} — Kan do it, since ${site.foundingYear}. Home`} width="600" height="289" /></a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav id="site-nav" class="nav" aria-label="Main">
+      <ul>
+        {links.map(([href, label]) => <li><a href={href} aria-current={path === href || path.startsWith(href + '/') ? 'page' : undefined}>{label}</a></li>)}
+        <li><a class="call" href={`tel:${site.phoneE164}`}>Call {site.phoneDisplay}</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<script>
+  const b = document.querySelector('.nav-toggle');
+  const n = document.getElementById('site-nav');
+  b?.addEventListener('click', () => {
+    const o = n!.classList.toggle('open');
+    b.setAttribute('aria-expanded', String(o));
+  });
+</script>

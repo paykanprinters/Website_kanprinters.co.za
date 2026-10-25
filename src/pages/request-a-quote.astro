@@ -1,0 +1,34 @@
+---
+import Base from '../layouts/Base.astro';
+import Hp from '../components/Hp.astro';
+import FormScript from '../components/FormScript.astro';
+import { site } from '../config/site';
+import { services } from '../data/catalog';
+---
+<Base title="Request a Bulk Printing Quote" description="Get a quote for screenprinting, engraving, DTF, UV, digital or pad printing in Cape Town. Upload your artwork — we reply fast.">
+  <section class="page-hero"><div class="wrap"><h1>Request a quote</h1><p class="lead">For businesses, clubs and schools. Tell us what you need and upload your logo or artwork.</p></div></section>
+  <section><div class="wrap">
+    <form class="form panel blue" action={site.formEndpoint} method="post" enctype="multipart/form-data" data-ajax>
+      <input type="hidden" name="form_type" value="quote" />
+      <Hp />
+      <div class="field"><label for="q-method">Print method</label>
+        <select id="q-method" name="method" required><option value="">Choose…</option>{services.map((s) => <option value={s.slug}>{s.title}</option>)}<option value="not-sure">Not sure — advise me</option></select></div>
+      <div class="field"><label for="q-item">Item</label><input id="q-item" name="item" required placeholder="e.g. T-shirts, pens, banners" /></div>
+      <div class="field"><label for="q-qty">Quantity</label><input id="q-qty" name="quantity" type="number" min="1" inputmode="numeric" required /></div>
+      <div class="field"><label for="q-deadline">Deadline</label><input id="q-deadline" name="deadline" type="date" /></div>
+      <div class="field"><label for="q-org">Company / club / school</label><input id="q-org" name="organisation" autocomplete="organization" /></div>
+      <div class="field"><label for="q-name">Your name</label><input id="q-name" name="name" required autocomplete="name" /></div>
+      <div class="field"><label for="q-phone">Phone / WhatsApp</label><input id="q-phone" name="phone" type="tel" required autocomplete="tel" /></div>
+      <div class="field"><label for="q-email">Email</label><input id="q-email" name="email" type="email" required autocomplete="email" /></div>
+      <div class="field full"><label for="q-notes">Details</label><textarea id="q-notes" name="message" rows="4" placeholder="Colours, sizes, print positions…"></textarea></div>
+      <div class="field full"><label for="q-files">Artwork / logo</label><input id="q-files" name="files[]" type="file" multiple accept=".jpg,.jpeg,.png,.pdf,.ai,.eps,.svg,.cdr,.psd" aria-describedby="q-files-hint" /><span id="q-files-hint" class="hint">JPG, PNG, PDF, AI, EPS, SVG, CDR or PSD · max 10 MB each, up to 5 files</span></div>
+      <div class="full"><button class="btn dark" type="submit">Request my quote</button><p class="form-status" role="status" aria-live="polite"></p></div>
+    </form>
+  </div></section>
+  <script>
+    const p = new URLSearchParams(location.search).get('method');
+    const s = document.getElementById('q-method') as HTMLSelectElement | null;
+    if (p && s && [...s.options].some((o) => o.value === p)) s.value = p;
+  </script>
+  <FormScript />
+</Base>

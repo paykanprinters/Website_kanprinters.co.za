@@ -1,0 +1,27 @@
+# Build Astro and upload dist/ to cPanel over FTP(S).
+# DISABLED by default: runs only when triggered manually (Actions → Deploy → Run workflow).
+# Required repo secrets: FTP_SERVER, FTP_USERNAME, FTP_PASSWORD  (TODO: add in GitHub → Settings → Secrets)
+name: Deploy to cPanel (manual)
+on:
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: npm }
+      - run: npm ci
+      - run: npm run build
+      - name: FTP upload
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: ./dist/
+          server-dir: ./public_html/
+          # never overwrite/delete the server-only mail config
+          exclude: |
+            **/api/config.php

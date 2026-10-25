@@ -1,0 +1,52 @@
+---
+import Base from '../layouts/Base.astro';
+import { site, waLink } from '../config/site';
+import type { Item } from '../data/catalog';
+interface Props { item: Item; kind: 'services' | 'gifts' }
+const { item, kind } = Astro.props;
+const isGift = kind === 'gifts';
+const parent = isGift ? ['Personalised Gifts', '/gifts'] : ['Print Services', '/services'];
+const ctaHref = isGift ? `/order-a-gift?product=${item.slug}` : `/request-a-quote?method=${item.slug}`;
+const schema: object[] = [
+  { '@context': 'https://schema.org', '@type': isGift ? 'Product' : 'Service', name: item.title, description: item.seoDesc,
+    ...(isGift ? { brand: { '@type': 'Brand', name: site.name } } : { provider: { '@id': `${site.url}/#business` }, areaServed: 'Cape Town' }) },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: site.url + '/' },
+    { '@type': 'ListItem', position: 2, name: parent[0], item: site.url + parent[1] },
+    { '@type': 'ListItem', position: 3, name: item.title, item: `${site.url}/${kind}/${item.slug}` } ] },
+];
+if (item.faqs) schema.push({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: item.faqs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) });
+---
+<Base title={item.seoTitle} description={item.seoDesc} schema={schema}>
+  <section class="page-hero">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href={parent[1]}>{parent[0]}</a> › <span aria-current="page">{item.title}</span></nav>
+      <h1>{item.title}</h1>
+      <p class="lead">{item.intro}</p>
+      <div class="cta">
+        <a class="btn" href={ctaHref}>{isGift ? 'Order yours today' : 'Request a quote'}</a>
+        <a class="btn wa" href={waLink(`Hi Kan Printers, I'm interested in ${item.title}.`)} target="_blank" rel="noopener">WhatsApp us</a>
+        <a class="btn ghost" href={`tel:${site.phoneE164}`}>Call {site.phoneDisplay}</a>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="wrap two-col">
+      <div>
+        <h2>{isGift ? 'Perfect for' : 'What we print'}</h2>
+        <ul class="ticks">{item.uses.map((u) => <li>{u}</li>)}</ul>
+        <h2 style="margin-top:32px">Recent work</h2>
+        <div class="grid g3">
+          {[1, 2, 3].map((n) => <figure class="ph"><figcaption>{item.title} — photo {n} (TODO)</figcaption></figure>)}
+        </div>
+        {item.faqs && <><h2 style="margin-top:32px">FAQs</h2>{item.faqs.map(([q, a]) => <details><summary>{q}</summary><p>{a}</p></details>)}</>}
+      </div>
+      <aside class={`panel ${isGift ? '' : 'blue'}`} aria-labelledby="aside-h">
+        <h2 id="aside-h" style="font-size:1.3rem">{isGift ? 'Made to order' : 'Need it in bulk?'}</h2>
+        <p>{isGift ? 'Send us your names, dates and photos — we’ll send a free proof before we make it.' : 'Tell us the item, quantity and deadline and upload your artwork. We’ll come back with a quote.'}</p>
+        <p><a class="btn" href={ctaHref}>{isGift ? 'Start my order' : 'Get a quote'}</a></p>
+        <p>Or call <a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a></p>
+      </aside>
+    </div>
+  </section>
+</Base>

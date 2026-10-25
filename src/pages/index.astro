@@ -1,0 +1,102 @@
+---
+import Base from '../layouts/Base.astro';
+import { site, waLink } from '../config/site';
+import { services, gifts } from '../data/catalog';
+---
+<Base title={`Screenprinting, Engraving & Personalised Gifts in Cape Town | ${site.name}`}
+  description="Cape Town printing since 2000: screenprinting, laser engraving, DTF, UV, digital & pad printing for businesses, clubs and schools — plus personalised gifts, trophies & plaques.">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Cape Town · Since {site.foundingYear}</p>
+        <h1>Your brand. Your moments. <span class="script">Kan do it.</span></h1>
+        <p class="lead">Screenprinting, engraving, DTF, UV, digital &amp; pad printing for businesses, clubs and schools — plus personalised gifts, trophies &amp; plaques made to order.</p>
+        <div class="cta">
+          <a class="btn dark" href="/request-a-quote">Get a bulk quote</a>
+          <a class="btn" href="/order-a-gift">Order a gift</a>
+          <a class="btn wa" href={waLink()} target="_blank" rel="noopener">WhatsApp us</a>
+          <a class="btn ghost" href={`tel:${site.phoneE164}`}>Call {site.phoneDisplay}</a>
+        </div>
+        <ul class="trust"><li>✓ Made to order</li><li>✓ Free digital proof</li><li>✓ Since {site.foundingYear}</li></ul>
+      </div>
+      <div class="vid">
+        {site.heroVideo
+          ? <video autoplay muted loop playsinline poster="/media/hero-poster.jpg" aria-label="Kan Printers promo video: bobbleheads, plaques and laser engraving"><source src="/media/hero.mp4" type="video/mp4" /></video>
+          : <p>▶ 9:16 hero video<br />(royalty-free cut)<br /><small>TODO: add /media/hero.mp4</small></p>}
+      </div>
+    </div>
+  </section>
+
+  <section class="route" aria-labelledby="route-h">
+    <div class="wrap">
+      <h2 id="route-h" class="sr-only">What are you looking for?</h2>
+      <div class="grid g2">
+        <div class="card bg-k">
+          <h3>For Business, Clubs &amp; Schools</h3>
+          <p>Branded apparel, promo items, signage and trophies — bulk orders with artwork upload.</p>
+          <p><a class="btn cyan" style="margin-top:12px" href="/request-a-quote">Get a bulk quote →</a></p>
+        </div>
+        <div class="card bg-m">
+          <h3>Personalised Gifts</h3>
+          <p>Bobbleheads, milestone keys, memorial plaques and 3D crystals.</p>
+          <p><a class="btn yellow" style="margin-top:12px" href="/gifts">Shop gifts →</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="svc-h" style="padding-top:0">
+    <div class="wrap">
+      <h2 id="svc-h">Print services</h2>
+      <div class="grid g3">
+        {services.map((s) => <a class={`card bg-${s.color}`} href={`/services/${s.slug}`}><h3>{s.title}</h3><p>{s.short}</p></a>)}
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="gift-h" style="padding-top:0">
+    <div class="wrap">
+      <h2 id="gift-h">Gifts — shop by occasion</h2>
+      <div class="grid g4">
+        <a class="card bg-m" href="/gifts/key-plaques"><h3>21st · 50th · 60th</h3><p>Acrylic milestone keys</p></a>
+        <a class="card bg-c" href="/gifts/memorial-plaques"><h3>In loving memory</h3><p>Edge-lit memorial &amp; pet plaques</p></a>
+        <a class="card bg-y" href="/services/engraving"><h3>Trophies &amp; awards</h3><p>Clubs, schools, corporate</p></a>
+        <a class="card bg-k" href="/gifts/bobbleheads"><h3>Just because</h3><p>3D bobbleheads &amp; crystals</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="best-h" style="padding-top:0">
+    <div class="wrap">
+      <h2 id="best-h">Best sellers</h2>
+      <div class="grid g4">
+        {gifts.map((g) => <a class="card" style="background:linear-gradient(#0000,#000b),#888" href={`/gifts/${g.slug}`}><h3>{g.title}</h3><p>{g.short}</p></a>)}
+      </div>
+      <!-- TODO: replace grey cards with real product photos (WebP, with alt text) -->
+    </div>
+  </section>
+
+  <section class="steps" aria-labelledby="how-h">
+    <div class="wrap">
+      <h2 id="how-h">How it works</h2>
+      <ol class="grid g4">
+        <li>Pick your product &amp; occasion</li>
+        <li>Send names, dates, photos or artwork</li>
+        <li>Approve your free proof</li>
+        <li>Collect or get it delivered</li>
+      </ol>
+    </div>
+  </section>
+
+  <section aria-labelledby="social-h">
+    <div class="wrap center">
+      <h2 id="social-h">Follow the <span class="script">making-of</span></h2>
+      <p>See our latest bobbleheads, keys and engraving jobs.</p>
+      <div class="cta" style="justify-content:center">
+        <a class="btn dark" href={site.socials.instagram} target="_blank" rel="noopener">Instagram @kan_printers</a>
+        <a class="btn dark" href={site.socials.tiktok} target="_blank" rel="noopener">TikTok @kan.printers</a>
+        <a class="btn dark" href={site.socials.facebook} target="_blank" rel="noopener">Facebook</a>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,7 @@
+---
+import ItemPage from '../../components/ItemPage.astro';
+import { services } from '../../data/catalog';
+export function getStaticPaths() { return services.map((item) => ({ params: { slug: item.slug }, props: { item } })); }
+const { item } = Astro.props;
+---
+<ItemPage item={item} kind="services" />

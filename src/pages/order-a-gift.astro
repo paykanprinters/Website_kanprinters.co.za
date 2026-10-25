@@ -1,0 +1,34 @@
+---
+import Base from '../layouts/Base.astro';
+import Hp from '../components/Hp.astro';
+import FormScript from '../components/FormScript.astro';
+import { site } from '../config/site';
+import { gifts } from '../data/catalog';
+---
+<Base title="Order a Personalised Gift" description="Order a custom bobblehead, milestone key, memorial plaque or 3D crystal. Send names, dates and photos — free proof before we make it.">
+  <section class="page-hero"><div class="wrap"><h1>Order a <span class="script">personalised</span> gift</h1><p class="lead">Tell us the occasion, send your names, dates and photos, and we’ll send a free proof.</p></div></section>
+  <section><div class="wrap">
+    <form class="form panel" action={site.formEndpoint} method="post" enctype="multipart/form-data" data-ajax>
+      <input type="hidden" name="form_type" value="gift" />
+      <Hp />
+      <div class="field"><label for="g-occ">Occasion</label>
+        <select id="g-occ" name="occasion" required><option value="">Choose…</option><option>21st birthday</option><option>40th / 50th / 60th birthday</option><option>Other birthday</option><option>Wedding / anniversary</option><option>Memorial</option><option>Pet memorial</option><option>Trophy / award</option><option>Just because</option></select></div>
+      <div class="field"><label for="g-prod">Product</label>
+        <select id="g-prod" name="product" required><option value="">Choose…</option>{gifts.map((g) => <option value={g.slug}>{g.title}</option>)}<option value="other">Something else</option></select></div>
+      <div class="field full"><label for="g-names">Names &amp; dates to include</label><input id="g-names" name="names_dates" required placeholder="e.g. Thabo · 21 · 14 March 2027" /></div>
+      <div class="field"><label for="g-needed">Needed by</label><input id="g-needed" name="deadline" type="date" /></div>
+      <div class="field"><label for="g-name">Your name</label><input id="g-name" name="name" required autocomplete="name" /></div>
+      <div class="field"><label for="g-phone">Phone / WhatsApp</label><input id="g-phone" name="phone" type="tel" required autocomplete="tel" /></div>
+      <div class="field"><label for="g-email">Email</label><input id="g-email" name="email" type="email" autocomplete="email" /></div>
+      <div class="field full"><label for="g-idea">Tell us about your idea</label><textarea id="g-idea" name="message" rows="4" placeholder="Club or car logo, colours, wording…"></textarea></div>
+      <div class="field full"><label for="g-files">Photos</label><input id="g-files" name="files[]" type="file" multiple accept="image/jpeg,image/png,image/webp,image/heic,.heic,.pdf" aria-describedby="g-files-hint" /><span id="g-files-hint" class="hint">JPG, PNG, WEBP, HEIC or PDF · max 10 MB each, up to 5 files</span></div>
+      <div class="full"><button class="btn" type="submit">Send my order request</button><p class="form-status" role="status" aria-live="polite"></p></div>
+    </form>
+  </div></section>
+  <script>
+    const p = new URLSearchParams(location.search).get('product');
+    const s = document.getElementById('g-prod') as HTMLSelectElement | null;
+    if (p && s && [...s.options].some((o) => o.value === p)) s.value = p;
+  </script>
+  <FormScript />
+</Base>

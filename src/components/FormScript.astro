@@ -1,0 +1,22 @@
+<script>
+  document.querySelectorAll<HTMLFormElement>('form[data-ajax]').forEach((f) => {
+    const status = f.querySelector<HTMLElement>('.form-status')!;
+    f.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const max = 10 * 1024 * 1024;
+      const files = Array.from(f.querySelectorAll<HTMLInputElement>('input[type=file]')).flatMap((i) => Array.from(i.files || []));
+      if (files.some((x) => x.size > max)) { status.className = 'form-status err'; status.textContent = 'Each file must be under 10 MB.'; return; }
+      const btn = f.querySelector<HTMLButtonElement>('button[type=submit]')!;
+      btn.disabled = true; status.className = 'form-status'; status.textContent = 'Sending…';
+      try {
+        const r = await fetch(f.action, { method: 'POST', body: new FormData(f), headers: { Accept: 'application/json' } });
+        const j = await r.json().catch(() => ({}));
+        if (r.ok && j.ok) { f.reset(); status.className = 'form-status ok'; status.textContent = j.message || 'Thanks! We’ll be in touch shortly.'; }
+        else throw new Error(j.message || 'Something went wrong.');
+      } catch (err) {
+        status.className = 'form-status err';
+        status.textContent = (err as Error).message + ' Please try again, or WhatsApp / call us.';
+      } finally { btn.disabled = false; }
+    });
+  });
+</script>

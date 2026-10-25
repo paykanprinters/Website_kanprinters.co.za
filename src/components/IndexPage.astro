@@ -1,0 +1,16 @@
+---
+import Base from '../layouts/Base.astro';
+import type { Item } from '../data/catalog';
+interface Props { kind: 'services' | 'gifts'; items: Item[]; title: string; h1: string; description: string; intro: string; cta: [string, string] }
+const { kind, items, title, h1, description, intro, cta } = Astro.props;
+---
+<Base title={title} description={description}>
+  <section class="page-hero"><div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <span aria-current="page">{h1}</span></nav>
+    <h1>{h1}</h1><p class="lead">{intro}</p>
+    <div class="cta"><a class="btn" href={cta[1]}>{cta[0]}</a></div>
+  </div></section>
+  <section><div class="wrap"><div class="grid g3">
+    {items.map((s) => <a class={`card bg-${s.color}`} href={`/${kind}/${s.slug}`}><h3>{s.title}</h3><p>{s.short}</p></a>)}
+  </div></div></section>
+</Base>

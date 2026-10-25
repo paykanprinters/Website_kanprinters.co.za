@@ -1,0 +1,17 @@
+ErrorDocument 404 /404.html
+Options -Indexes
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Force HTTPS + www
+  RewriteCond %{HTTPS} off [OR]
+  RewriteCond %{HTTP_HOST} !^www\. [NC]
+  RewriteRule ^ https://www.kanprinters.co.za%{REQUEST_URI} [L,R=301]
+</IfModule>
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+</IfModule>

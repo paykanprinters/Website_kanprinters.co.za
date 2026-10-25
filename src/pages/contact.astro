@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import Hp from '../components/Hp.astro';
+import FormScript from '../components/FormScript.astro';
+import { site, waLink } from '../config/site';
+const a = site.address;
+const mapQ = encodeURIComponent(`${a.street}, ${a.locality}, ${a.city}`);
+---
+<Base title="Contact Us — Lansdowne, Cape Town" description={`Call ${site.phoneDisplay}, WhatsApp or visit ${site.name} in Lansdowne, Cape Town for printing, engraving and personalised gifts.`}>
+  <section class="page-hero"><div class="wrap"><h1>Contact us</h1><p class="lead">Call, WhatsApp, email or pop in — we’re happy to help.</p></div></section>
+  <section><div class="wrap two-col">
+    <div>
+      <h2>Send us a message</h2>
+      <form class="form" action={site.formEndpoint} method="post" data-ajax>
+        <input type="hidden" name="form_type" value="contact" />
+        <Hp />
+        <div class="field"><label for="c-name">Your name</label><input id="c-name" name="name" required autocomplete="name" /></div>
+        <div class="field"><label for="c-phone">Phone / WhatsApp</label><input id="c-phone" name="phone" type="tel" required autocomplete="tel" /></div>
+        <div class="field full"><label for="c-email">Email</label><input id="c-email" name="email" type="email" autocomplete="email" /></div>
+        <div class="field full"><label for="c-msg">Message</label><textarea id="c-msg" name="message" rows="5" required></textarea></div>
+        <div class="full"><button class="btn" type="submit">Send message</button> <p class="form-status" role="status" aria-live="polite"></p></div>
+      </form>
+    </div>
+    <aside class="panel blue">
+      <h2 style="font-size:1.3rem">Find us</h2>
+      <address style="font-style:normal">{a.street}<br />{a.locality}, {a.city}</address>
+      <p><small>TODO: confirm address &amp; hours</small></p>
+      <p><a class="btn" href={`tel:${site.phoneE164}`}>Call {site.phoneDisplay}</a></p>
+      <p><a class="btn wa" href={waLink()} target="_blank" rel="noopener">WhatsApp us</a></p>
+      <p>Email: <a href={`mailto:${site.email}`}>{site.email}</a></p>
+      <p>Hours: {site.hours.map((h) => `${h.days} ${h.open}–${h.close}`).join(', ')}</p>
+      <p>Delivery: {site.serviceArea}</p>
+      <p><a href={`https://www.google.com/maps/search/?api=1&query=${mapQ}`} target="_blank" rel="noopener">Open in Google Maps</a></p>
+    </aside>
+  </div></section>
+  <FormScript />
+</Base>
