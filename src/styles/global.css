@@ -70,7 +70,10 @@ input,select,textarea{padding:12px;border:1px solid #999;border-radius:10px;font
 .hp{position:absolute;left:-9999px}
 .form-status{font-weight:700}.form-status.ok{color:#137333}.form-status.err{color:#b00020}
 .site-footer{background:var(--k);color:#ddd;padding:40px 0 90px;font-size:14px}
-.site-footer a{color:#fff}
+.site-footer a{color:#fff;text-decoration:none;transition:color .15s}
+/* #EC008C is only ~4.3:1 on #141414, so use a lighter magenta tint (#FF4DAF, ~6:1) for AA */
+.site-footer a:hover,.site-footer a:focus-visible{color:#FF4DAF;text-decoration:underline;text-underline-offset:3px}
+.site-footer a:focus-visible{outline:3px solid var(--c);outline-offset:2px;border-radius:2px}
 .site-footer .grid{gap:24px}
 .site-footer h2{font-size:1rem;color:var(--y);margin-bottom:8px}
 .site-footer ul{list-style:none;padding:0;margin:0}.site-footer li{padding:3px 0}
