@@ -5,12 +5,14 @@ import FormScript from '../components/FormScript.astro';
 import { site } from '../config/site';
 import { services } from '../data/catalog';
 ---
-<Base title="Request a Bulk Printing Quote" description="Get a quote for screenprinting, engraving, DTF, UV, digital or pad printing in Cape Town. Upload your artwork — we reply fast.">
-  <section class="page-hero"><div class="wrap"><h1>Request a quote</h1><p class="lead">For businesses, clubs and schools. Tell us what you need and upload your logo or artwork.</p></div></section>
+<Base title="Request a Bulk Printing Quote" description="Business or trade quote for screenprinting, engraving, DTF, UV, digital or pad printing in Cape Town. Upload your artwork — we reply fast.">
+  <section class="page-hero"><div class="wrap"><h1>Request a quote</h1><p class="lead">For businesses, clubs, schools and trade/promo resellers. Tell us what you need and upload your logo or artwork.</p></div></section>
   <section><div class="wrap">
     <form class="form panel blue" action={site.formEndpoint} method="post" enctype="multipart/form-data" data-ajax>
       <input type="hidden" name="form_type" value="quote" />
       <Hp />
+      <div class="field"><label for="q-type">Customer type</label>
+        <select id="q-type" name="customer_type" required><option value="">Choose…</option><option value="business">Business / company</option><option value="club-school">Club / school / NPO</option><option value="trade">Trade / reseller (promo company)</option><option value="individual">Individual</option></select></div>
       <div class="field"><label for="q-method">Print method</label>
         <select id="q-method" name="method" required><option value="">Choose…</option>{services.map((s) => <option value={s.slug}>{s.title}</option>)}<option value="not-sure">Not sure — advise me</option></select></div>
       <div class="field"><label for="q-item">Item</label><input id="q-item" name="item" required placeholder="e.g. T-shirts, pens, banners" /></div>
@@ -29,6 +31,9 @@ import { services } from '../data/catalog';
     const p = new URLSearchParams(location.search).get('method');
     const s = document.getElementById('q-method') as HTMLSelectElement | null;
     if (p && s && [...s.options].some((o) => o.value === p)) s.value = p;
+    const ty = new URLSearchParams(location.search).get('type');
+    const ts = document.getElementById('q-type') as HTMLSelectElement | null;
+    if (ty && ts && [...ts.options].some((o) => o.value === ty)) ts.value = ty;
   </script>
   <FormScript />
 </Base>

@@ -55,7 +55,7 @@ if ($type === 'quote' && $email === '') respond(422, false, 'Please enter your e
 
 $fields = [
     'contact' => ['message' => 'Message'],
-    'quote'   => ['method' => 'Print method', 'item' => 'Item', 'quantity' => 'Quantity', 'deadline' => 'Deadline', 'organisation' => 'Organisation', 'message' => 'Details'],
+    'quote'   => ['customer_type' => 'Customer type', 'method' => 'Print method', 'item' => 'Item', 'quantity' => 'Quantity', 'deadline' => 'Deadline', 'organisation' => 'Organisation', 'message' => 'Details'],
     'gift'    => ['occasion' => 'Occasion', 'product' => 'Product', 'names_dates' => 'Names & dates', 'deadline' => 'Needed by', 'message' => 'Idea'],
 ][$type];
 

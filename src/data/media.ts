@@ -6,7 +6,7 @@ export const stills: Record<string, Still> = {
   memorial: { src: p('memorial-plaque'), alt: 'Glowing round memorial plaque engraved “No longer by my side, but forever in my heart”', title: 'Memorial Plaques', sub: 'Plaques • Memorials • Keepsakes' },
   keyManUtd: { src: p('key-man-united'), alt: 'Red acrylic 21st birthday key with a Manchester United crest, engraved with the owner’s name (client work)', title: 'Club & Fan Keys', sub: 'Your team. Your name.' },
   keyVw: { src: p('key-vw'), alt: 'Silver and black acrylic key plaque with a VW badge and engraved name (client work)', title: 'Custom Acrylic Keys', sub: 'Cut & engraved in-house' },
-  laser: { src: p('laser-engraver'), alt: 'Laser engraver cutting a design into blue acrylic in the Kan Screenprinters workshop', title: 'Laser Engraving', sub: 'Precision in every detail' },
+  laser: { src: p('laser-engraver'), alt: 'Laser engraver cutting a design into blue acrylic in the Kan Screenprinters factory', title: 'Laser Engraving', sub: 'Precision in every detail' },
   keyManCity: { src: p('key-man-city'), alt: 'Blue acrylic key plaque with a Manchester City crest and engraved name (client work)', title: 'Club & Fan Keys', sub: 'Your team. Your name.' },
   key60: { src: p('key-60th'), alt: 'Clear acrylic 60th birthday key plaque with a photo collage', title: 'Milestone Birthdays', sub: '21st • 50th • 60th & beyond' },
   crystalCube: { src: p('crystal-cube'), alt: '3D laser-engraved photo crystal cube glowing blue on an LED base', title: '3D Crystal Memories', sub: 'Your photo, lit up in glass' },

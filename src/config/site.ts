@@ -31,8 +31,9 @@ export const site = {
     instagram: 'https://www.instagram.com/kan_printers',
     facebook: 'https://www.facebook.com/profile.php?id=100063567161377',
   },
+  description: 'Cape Town print and promo factory since 2000. In-house screenprinting, laser engraving and cutting, DTF, UV, digital and pad printing for businesses, clubs, schools and the public — plus trade production for promotional companies and resellers.',
   formEndpoint: '/api/send.php',
-  // Hero loop cut from the 9:16 ROYALTY-FREE promo (00:07–00:16). Never use the copyrighted-song cut.
+  // Hero loop cut from the 9:16 ROYALTY-FREE promo (00:09–00:18, opens on the VW key, ends before the 00:18 cut). Never use the copyrighted-song cut.
   heroVideo: true,
 };
 

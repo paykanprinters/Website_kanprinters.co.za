@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import { site, waLink } from '../config/site';
+import { services } from '../data/catalog';
+---
+<Base title="Trade & Reseller Printing for Promotional Companies — Cape Town" description="Trade print partner for promotional companies & resellers: in-house screenprinting, engraving, DTF, UV, digital & pad printing at our Cape Town factory. Bulk runs, unbranded delivery, trade pricing.">
+  <section class="page-hero"><div class="wrap">
+    <p class="eyebrow">Trade &amp; Resellers</p>
+    <h1>Your production partner in <span class="script">Cape Town</span></h1>
+    <p class="lead">Promotional companies and resellers use {site.name} as their factory. Everything is made in-house, so you get one supplier for every print method and consistent quality on every run.</p>
+    <div class="cta"><a class="btn dark" href="/request-a-quote?type=trade">Request a trade quote</a><a class="btn wa" href={waLink("Hi Kan Screenprinters, I'm a promo company / reseller and would like trade pricing.")} target="_blank" rel="noopener">WhatsApp us</a></div>
+  </div></section>
+  <section><div class="wrap two-col">
+    <div>
+      <h2>Why promo companies work with us</h2>
+      <ul class="ticks">
+        <li><strong>In-house production</strong> — our own factory in Lansdowne; nothing is outsourced.</li>
+        <li><strong>Bulk runs</strong> — from short runs to large corporate and event orders.</li>
+        <!-- TODO confirm with client: unbranded / white-label delivery terms -->
+        <li><strong>Unbranded / white-label delivery</strong> — we can pack and deliver without our branding, direct to you or your client.</li>
+        <!-- TODO confirm with client: standard trade turnaround times -->
+        <li><strong>Reliable turnaround</strong> — agreed lead times on every job, with rush options on request.</li>
+        <li><strong>Trade pricing on request</strong> — send us your artwork and quantities for a trade quote.</li>
+        <li><strong>Free digital proof</strong> before every production run.</li>
+      </ul>
+      <h2>What we produce for the trade</h2>
+      <ul>{services.map((s) => <li><a href={`/services/${s.slug}`}>{s.title}</a> — {s.short}</li>)}</ul>
+    </div>
+    <aside class="panel"><h2 style="font-size:1.3rem">Get trade pricing</h2><p>Tell us the item, quantity, print method and deadline, and upload your artwork.</p><p><a class="btn" href="/request-a-quote?type=trade">Request a trade quote</a></p><p><a href={`tel:${site.phoneE164}`}>Call {site.phoneDisplay}</a><br /><a href={`mailto:${site.email}`}>{site.email}</a></p></aside>
+  </div></section>
+</Base>

@@ -8,7 +8,7 @@ const bestSellers: [string, string][] = [['bobbleheads', 'bobblehead'], ['key-pl
 const homeWork = ['wood-acrylic-vw-plaque-01', 'award-plaque-01', 'screenprint-tshirt-02', 'mug-print-01', 'family-sign-laser-01', 'hard-hat-print-01', 'crystal-3d-car-01', 'desk-organiser-01'];
 ---
 <Base title={`Screenprinting, Engraving & Personalised Gifts in Cape Town | ${site.name}`}
-  description="Cape Town printing since 2000: screenprinting, laser engraving, DTF, UV, digital & pad printing for businesses, clubs and schools — plus personalised gifts, trophies & plaques.">
+  description="Cape Town print & promo factory since 2000: in-house screenprinting, laser engraving, DTF, UV, digital & pad printing for businesses, the public and trade/promo resellers — plus personalised gifts & plaques.">
   <section class={site.heroVideo ? 'vhero' : 'hero'} aria-label="Introduction">
     {site.heroVideo && <>
       <picture class="poster">
@@ -24,14 +24,14 @@ const homeWork = ['wood-acrylic-vw-plaque-01', 'award-plaque-01', 'screenprint-t
         <p class="tagline">Gifts • Trophies • Plaques</p>
         <p class="eyebrow" style="color:var(--y)">Cape Town · Since {site.foundingYear}</p>
         <h1>Your brand. Your moments. <span class="script">Kan do it.</span></h1>
-        <p class="lead">Screenprinting, engraving, DTF, UV, digital &amp; pad printing for businesses, clubs and schools — plus personalised gifts, trophies &amp; plaques made to order.</p>
+        <p class="lead">We’re a local Cape Town print and promo factory. Under one roof we offer screenprinting, laser engraving and cutting, DTF, UV, digital and pad printing — so whether you need 500 branded pens or a single memorial plaque, we can make it.</p>
         <div class="cta">
           <a class="btn dark" href="/request-a-quote">Get a bulk quote</a>
           <a class="btn" href="/order-a-gift">Order a gift</a>
           <a class="btn wa" href={waLink()} target="_blank" rel="noopener">WhatsApp us</a>
           <a class="btn ghost" href={`tel:${site.phoneE164}`}>Call {site.phoneDisplay}</a>
         </div>
-        <ul class="trust"><li>✓ Made to order</li><li>✓ Free digital proof</li><li>✓ Since {site.foundingYear}</li></ul>
+        <ul class="trust"><li>✓ In-house factory</li><li>✓ Made to order</li><li>✓ Free digital proof</li><li>✓ Since {site.foundingYear}</li></ul>
       </div>
     </div>
   </section>
@@ -53,13 +53,27 @@ const homeWork = ['wood-acrylic-vw-plaque-01', 'award-plaque-01', 'screenprint-t
       <div class="grid g2">
         <div class="card bg-k">
           <h3>For Business, Clubs &amp; Schools</h3>
-          <p>Branded apparel, promo items, signage and trophies — bulk orders with artwork upload.</p>
+          <p>Branded apparel, promo items, signage and trophies — bulk orders with artwork upload. Promo company? <a href="/trade">See trade &amp; resellers</a>.</p>
           <p><a class="btn cyan" style="margin-top:12px" href="/request-a-quote">Get a bulk quote →</a></p>
         </div>
         <div class="card bg-m">
           <h3>Personalised Gifts</h3>
           <p>Bobbleheads, milestone keys, memorial plaques and 3D crystals.</p>
           <p><a class="btn yellow" style="margin-top:12px" href="/gifts">Shop gifts →</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trade" aria-labelledby="trade-h" style="padding-top:0">
+    <div class="wrap">
+      <div class="card bg-c">
+        <p class="eyebrow">Trade &amp; Resellers</p>
+        <h2 id="trade-h">Print partner for promotional companies</h2>
+        <p>We’re the factory behind many Cape Town promo brands. In-house production, bulk runs across six print methods, and unbranded delivery to your client on request. Trade pricing on request.</p>
+        <div class="cta">
+          <a class="btn dark" href="/request-a-quote?type=trade">Request a trade quote</a>
+          <a class="btn ghost" href="/trade">How trade works →</a>
         </div>
       </div>
     </div>
