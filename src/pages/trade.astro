@@ -1,4 +1,5 @@
 ---
+import FactorySection from '../components/FactorySection.astro';
 import Base from '../layouts/Base.astro';
 import { site, waLink } from '../config/site';
 import { services } from '../data/catalog';
@@ -28,4 +29,5 @@ import { services } from '../data/catalog';
     </div>
     <aside class="panel"><h2 style="font-size:1.3rem">Get trade pricing</h2><p>Tell us the item, quantity, print method and deadline, and upload your artwork.</p><p><a class="btn" href="/request-a-quote?type=trade">Request a trade quote</a></p><p><a href={`tel:${site.phoneE164}`}>Call {site.phoneDisplay}</a><br /><a href={`mailto:${site.email}`}>{site.email}</a></p></aside>
   </div></section>
+  <FactorySection />
 </Base>

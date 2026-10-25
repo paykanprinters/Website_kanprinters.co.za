@@ -1,4 +1,5 @@
 ---
+import FactorySection from '../components/FactorySection.astro';
 import Base from '../layouts/Base.astro';
 import { site } from '../config/site';
 const years = new Date().getFullYear() - site.foundingYear;
@@ -19,4 +20,5 @@ const years = new Date().getFullYear() - site.foundingYear;
     </div>
     <aside class="panel"><h2 style="font-size:1.3rem">{site.tagline}</h2><p><a class="btn" href="/contact">Get in touch</a></p></aside>
   </div></section>
+  <FactorySection />
 </Base>

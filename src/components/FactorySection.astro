@@ -1,0 +1,14 @@
+---
+import FactoryClip from './FactoryClip.astro';
+interface Props { id?: string; text?: string }
+const { id = 'factory-clip-section', text = 'Every job is produced in-house at our Lansdowne factory — screens are prepped, inks mixed and prints pulled by our own team, so we control quality from artwork to finished order.' } = Astro.props;
+---
+<section aria-labelledby={`${id}-h`}><div class="wrap two-col">
+  <div>
+    <p class="eyebrow">Made in our factory</p>
+    <h2 id={`${id}-h`}>Made in our factory, by our own people</h2>
+    <p>{text}</p>
+    <p><a class="btn" href="/services/screenprinting">See our screenprinting →</a></p>
+  </div>
+  <FactoryClip id={id} />
+</div></section>

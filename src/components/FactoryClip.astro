@@ -1,0 +1,24 @@
+---
+// Muted looping factory clip (Charlene screenprinting). Reduced-motion users see the poster only.
+interface Props { caption?: string; id?: string }
+const { caption = 'Charlene on the screenprinting press in our Lansdowne factory', id = 'factory-clip' } = Astro.props;
+---
+<figure class="factory-clip">
+  <video id={id} muted loop playsinline preload="metadata" poster="/media/factory-screenprint-poster.jpg" width="480" height="848"
+    aria-label="Video: Charlene screenprinting a teal design onto a tote bag in the Kan Screenprinters factory">
+    <source src="/media/factory-screenprint.webm" type="video/webm" />
+    <source src="/media/factory-screenprint.mp4" type="video/mp4" />
+  </video>
+  <figcaption>{caption}</figcaption>
+</figure>
+<script is:inline define:vars={{ id }}>
+  (function(){var v=document.getElementById(id);if(!v)return;
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){v.removeAttribute('autoplay');v.pause();return;}
+    if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){e.isIntersecting?v.play().catch(function(){}):v.pause();});},{threshold:.25}).observe(v);}else{v.play().catch(function(){});}
+  })();
+</script>
+<style>
+  .factory-clip{margin:0;max-width:360px}
+  .factory-clip video{width:100%;height:auto;aspect-ratio:480/848;border-radius:14px;background:#141414;display:block;object-fit:cover}
+  .factory-clip figcaption{font-size:.9rem;margin-top:8px;opacity:.8}
+</style>

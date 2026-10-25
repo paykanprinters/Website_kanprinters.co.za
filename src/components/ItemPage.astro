@@ -4,6 +4,7 @@ import { site, waLink } from '../config/site';
 import type { Item } from '../data/catalog';
 import { stills, pageMedia, photoByFile } from '../data/media';
 import Shot from './Shot.astro';
+import FactoryClip from './FactoryClip.astro';
 interface Props { item: Item; kind: 'services' | 'gifts' }
 const { item, kind } = Astro.props;
 const isGift = kind === 'gifts';
@@ -39,6 +40,7 @@ if (item.faqs) schema.push({ '@context': 'https://schema.org', '@type': 'FAQPage
       <div>
         <h2>{isGift ? 'Perfect for' : 'What we print'}</h2>
         <ul class="ticks">{item.uses.map((u) => <li>{u}</li>)}</ul>
+        {item.slug === 'screenprinting' && <><h2 style="margin-top:32px">See it in action</h2><FactoryClip id="svc-factory-clip" /></>}
         <h2 style="margin-top:32px">Recent work</h2>
         {hasMedia ? <div class="grid g3">
           {media.stills.map((k) => <Shot src={stills[k].src} alt={stills[k].alt} title={stills[k].title} sub={stills[k].sub} />)}
