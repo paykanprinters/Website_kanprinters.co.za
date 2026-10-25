@@ -1,0 +1,12 @@
+---
+// Product image with campaign-style caption band (title + CMYK line + subtitle).
+interface Props { src: string; alt: string; title?: string; sub?: string; jpg?: boolean; eager?: boolean; w?: number; h?: number }
+const { src, alt, title, sub, eager = false, w = 800, h = 1000 } = Astro.props;
+---
+<figure class="shot">
+  <picture>
+    <source srcset={`${src}.webp`} type="image/webp" />
+    <img src={`${src}.jpg`} alt={alt} width={w} height={h} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+  </picture>
+  {title && <figcaption class="band"><strong>{title}</strong><span class="cmyk-line" aria-hidden="true"></span>{sub && <span>{sub}</span>}</figcaption>}
+</figure>

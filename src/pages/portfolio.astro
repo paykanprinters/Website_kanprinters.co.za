@@ -1,14 +1,33 @@
 ---
 import Base from '../layouts/Base.astro';
 import { site } from '../config/site';
-const items = ['Custom 3D bobblehead', 'Man United 21st key', 'Edge-lit pet memorial', '3D crystal on LED base', 'Laser-engraved wood', 'Branded lanyards', 'Screenprinted school tees', 'DTF sports kit', 'UV-printed acrylic', 'Pad-printed pens', 'Pull-up banner', 'Club trophies'];
+import { photos, cats, stills } from '../data/media';
+import Shot from '../components/Shot.astro';
+const featured = ['bobblehead', 'keyManUtd', 'edgeLit', 'crystalPortrait', 'laser', 'carDisplay', 'keyVw', 'memorial'];
 ---
 <Base title="Portfolio — Our Printing, Engraving & Gift Work" description="See recent work by Kan Screenprinters: bobbleheads, milestone keys, memorial plaques, crystals, screenprinting, engraving and more.">
   <section class="page-hero"><div class="wrap"><h1>Portfolio</h1><p class="lead">A taste of what we make. For the latest jobs, follow us on <a href={site.socials.instagram}>Instagram</a> and <a href={site.socials.tiktok}>TikTok</a>.</p></div></section>
+  <div class="divider" aria-hidden="true"></div>
   <section><div class="wrap">
-    <!-- TODO: replace placeholders with real photos (WebP ~1200px, descriptive alt text) -->
-    <ul class="grid g4" style="list-style:none;padding:0">
-      {items.map((t) => <li><figure class="ph"><figcaption>{t}</figcaption></figure></li>)}
+    <h2>Client work</h2>
+    <div class="filters" role="group" aria-label="Filter portfolio">
+      <button type="button" data-f="all" aria-pressed="true">All</button>
+      {cats.map(([k, label]) => <button type="button" data-f={k} aria-pressed="false">{label}</button>)}
+    </div>
+    <ul class="grid g4 pgrid" id="pgrid">
+      {photos.map((p) => <li data-cats={p.cats.join(' ')}><figure>
+        <a href={`/images/portfolio/${p.file}.webp`}><picture><source srcset={`/images/portfolio/${p.file}-thumb.webp`} type="image/webp" /><img src={`/images/portfolio/${p.file}-thumb.jpg`} alt={p.alt} width="480" height="480" loading="lazy" /></picture></a>
+        <figcaption>{p.alt}</figcaption></figure></li>)}
     </ul>
+    <h2 style="margin-top:40px">From our promo video</h2>
+    <div class="grid g4">
+      {featured.map((k) => <Shot src={stills[k].src} alt={stills[k].alt} title={stills[k].title} sub={stills[k].sub} />)}
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-top:16px">Club crests and car badges shown are client orders; trademarks belong to their owners.</p>
   </div></section>
+  <script is:inline>
+    (function(){var bs=document.querySelectorAll('.filters button'),li=document.querySelectorAll('#pgrid li');
+      bs.forEach(function(b){b.addEventListener('click',function(){var f=b.dataset.f;bs.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+        li.forEach(function(l){l.hidden=!(f==='all'||l.dataset.cats.split(' ').indexOf(f)>-1)})})})})();
+  </script>
 </Base>

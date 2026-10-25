@@ -32,8 +32,8 @@ export const site = {
     facebook: 'https://www.facebook.com/profile.php?id=100063567161377',
   },
   formEndpoint: '/api/send.php',
-  // TODO: hero video — export the 9:16 ROYALTY-FREE cut to /public/media/hero.mp4 (+ hero-poster.jpg) and set to true. Never use the copyrighted-song cut.
-  heroVideo: false,
+  // Hero loop cut from the 9:16 ROYALTY-FREE promo (00:07–00:16). Never use the copyrighted-song cut.
+  heroVideo: true,
 };
 
 export const waLink = (msg = site.whatsappMessage) =>

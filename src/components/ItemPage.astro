@@ -2,9 +2,13 @@
 import Base from '../layouts/Base.astro';
 import { site, waLink } from '../config/site';
 import type { Item } from '../data/catalog';
+import { stills, pageMedia, photoByFile } from '../data/media';
+import Shot from './Shot.astro';
 interface Props { item: Item; kind: 'services' | 'gifts' }
 const { item, kind } = Astro.props;
 const isGift = kind === 'gifts';
+const media = pageMedia[item.slug] ?? { stills: [], photos: [] };
+const hasMedia = media.stills.length + media.photos.length > 0;
 const parent = isGift ? ['Personalised Gifts', '/gifts'] : ['Print Services', '/services'];
 const ctaHref = isGift ? `/order-a-gift?product=${item.slug}` : `/request-a-quote?method=${item.slug}`;
 const schema: object[] = [
@@ -36,9 +40,12 @@ if (item.faqs) schema.push({ '@context': 'https://schema.org', '@type': 'FAQPage
         <h2>{isGift ? 'Perfect for' : 'What we print'}</h2>
         <ul class="ticks">{item.uses.map((u) => <li>{u}</li>)}</ul>
         <h2 style="margin-top:32px">Recent work</h2>
-        <div class="grid g3">
-          {[1, 2, 3].map((n) => <figure class="ph"><figcaption>{item.title} — photo {n} (TODO)</figcaption></figure>)}
-        </div>
+        {hasMedia ? <div class="grid g3">
+          {media.stills.map((k) => <Shot src={stills[k].src} alt={stills[k].alt} title={stills[k].title} sub={stills[k].sub} />)}
+          {media.photos.map((f) => <figure class="shot"><picture><source srcset={`/images/portfolio/${f}-thumb.webp`} type="image/webp" /><img src={`/images/portfolio/${f}-thumb.jpg`} alt={photoByFile(f).alt} width="480" height="480" loading="lazy" style="aspect-ratio:1" /></picture></figure>)}
+        </div> : <div class="grid g3">
+          {[1, 2, 3].map(() => <figure class="ph"><figcaption>{item.title} — photos coming soon</figcaption></figure>)}
+        </div>}
         {item.faqs && <><h2 style="margin-top:32px">FAQs</h2>{item.faqs.map(([q, a]) => <details><summary>{q}</summary><p>{a}</p></details>)}</>}
       </div>
       <aside class={`panel ${isGift ? '' : 'blue'}`} aria-labelledby="aside-h">

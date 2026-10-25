@@ -2,13 +2,27 @@
 import Base from '../layouts/Base.astro';
 import { site, waLink } from '../config/site';
 import { services, gifts } from '../data/catalog';
+import { stills, photoByFile } from '../data/media';
+import Shot from '../components/Shot.astro';
+const bestSellers: [string, string][] = [['bobbleheads', 'bobblehead'], ['key-plaques', 'key60'], ['memorial-plaques', 'memorial'], ['crystals', 'crystalCube']];
+const homeWork = ['wood-acrylic-vw-plaque-01', 'award-plaque-01', 'screenprint-tshirt-02', 'mug-print-01', 'family-sign-laser-01', 'hard-hat-print-01', 'crystal-3d-car-01', 'desk-organiser-01'];
 ---
 <Base title={`Screenprinting, Engraving & Personalised Gifts in Cape Town | ${site.name}`}
   description="Cape Town printing since 2000: screenprinting, laser engraving, DTF, UV, digital & pad printing for businesses, clubs and schools — plus personalised gifts, trophies & plaques.">
-  <section class="hero">
+  <section class={site.heroVideo ? 'vhero' : 'hero'} aria-label="Introduction">
+    {site.heroVideo && <>
+      <picture class="poster">
+        <source media="(max-width:700px)" srcset="/media/hero-poster-tall.jpg" />
+        <img src="/media/hero-poster.jpg" alt="" width="1280" height="720" fetchpriority="high" />
+      </picture>
+      <video id="hero-video" muted loop playsinline preload="none" poster="/media/hero-poster.jpg" aria-hidden="true"
+        data-wide-webm="/media/hero-wide.webm" data-wide-mp4="/media/hero-wide.mp4"
+        data-tall-webm="/media/hero-tall.webm" data-tall-mp4="/media/hero-tall.mp4" data-tall-poster="/media/hero-poster-tall.jpg"></video>
+    </>}
     <div class="wrap">
       <div>
-        <p class="eyebrow">Cape Town · Since {site.foundingYear}</p>
+        <p class="tagline">Gifts • Trophies • Plaques</p>
+        <p class="eyebrow" style="color:var(--y)">Cape Town · Since {site.foundingYear}</p>
         <h1>Your brand. Your moments. <span class="script">Kan do it.</span></h1>
         <p class="lead">Screenprinting, engraving, DTF, UV, digital &amp; pad printing for businesses, clubs and schools — plus personalised gifts, trophies &amp; plaques made to order.</p>
         <div class="cta">
@@ -19,13 +33,19 @@ import { services, gifts } from '../data/catalog';
         </div>
         <ul class="trust"><li>✓ Made to order</li><li>✓ Free digital proof</li><li>✓ Since {site.foundingYear}</li></ul>
       </div>
-      <div class="vid">
-        {site.heroVideo
-          ? <video autoplay muted loop playsinline poster="/media/hero-poster.jpg" aria-label="Kan Screenprinters promo video: bobbleheads, plaques and laser engraving"><source src="/media/hero.mp4" type="video/mp4" /></video>
-          : <p>▶ 9:16 hero video<br />(royalty-free cut)<br /><small>TODO: add /media/hero.mp4</small></p>}
-      </div>
     </div>
   </section>
+  <div class="divider" aria-hidden="true"></div>
+  {site.heroVideo && <script is:inline>
+    (function(){
+      var v=document.getElementById('hero-video'); if(!v) return;
+      if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var tall=window.matchMedia('(max-width:700px)').matches, k=tall?'tall':'wide';
+      if(tall) v.poster=v.dataset.tallPoster;
+      [['webm','video/webm'],['mp4','video/mp4']].forEach(function(t){var s=document.createElement('source');s.src=v.dataset[k+t[0][0].toUpperCase()+t[0].slice(1)];s.type=t[1];v.appendChild(s);});
+      v.load(); var p=v.play(); if(p&&p.catch) p.catch(function(){});
+    })();
+  </script>}
 
   <section class="route" aria-labelledby="route-h">
     <div class="wrap">
@@ -70,9 +90,18 @@ import { services, gifts } from '../data/catalog';
     <div class="wrap">
       <h2 id="best-h">Best sellers</h2>
       <div class="grid g4">
-        {gifts.map((g) => <a class="card" style="background:linear-gradient(#0000,#000b),#888" href={`/gifts/${g.slug}`}><h3>{g.title}</h3><p>{g.short}</p></a>)}
+        {bestSellers.map(([slug, key]) => { const st = stills[key]; return <a class="shotlink" href={`/gifts/${slug}`}><Shot src={st.src} alt={st.alt} title={gifts.find((g) => g.slug === slug)!.title} sub={st.sub} /></a>; })}
       </div>
-      <!-- TODO: replace grey cards with real product photos (WebP, with alt text) -->
+    </div>
+  </section>
+
+  <section aria-labelledby="work-h" style="padding-top:0">
+    <div class="wrap">
+      <h2 id="work-h">Recent client work</h2>
+      <ul class="grid g4 pgrid">
+        {homeWork.map((f) => { const ph = photoByFile(f); return <li><a href="/portfolio"><picture><source srcset={`/images/portfolio/${f}-thumb.webp`} type="image/webp" /><img src={`/images/portfolio/${f}-thumb.jpg`} alt={ph.alt} width="480" height="480" loading="lazy" /></picture></a></li>; })}
+      </ul>
+      <p><a class="btn dark" href="/portfolio">See the full portfolio →</a></p>
     </div>
   </section>
 
@@ -87,6 +116,15 @@ import { services, gifts } from '../data/catalog';
       </ol>
     </div>
   </section>
+
+  <section class="endline" aria-labelledby="end-h">
+    <div class="wrap">
+      <h2 id="end-h" class="big" style="font-size:clamp(1.5rem,4vw,2.3rem)">Personalised. Precise. Printed with Pride.</h2>
+      <span class="cmyk-line" style="margin:0 auto 22px;width:120px" aria-hidden="true"></span>
+      <a class="btn pulse" href="/order-a-gift">Order yours today</a>
+    </div>
+  </section>
+  <div class="divider" aria-hidden="true"></div>
 
   <section aria-labelledby="social-h">
     <div class="wrap center">
